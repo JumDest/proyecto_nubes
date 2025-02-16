@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edificio - Estado de los Apartamentos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Selecciona los apartamentos ocupados</h1>
+        <form method="post">
+            <div class="checkbox-group">
+                {% for num in range(1, 19) %}
+                    <label>
+                        <input type="checkbox" name="{{ num }}" value="1" {% if ocupados.get(num, '0') == '1' %}checked{% endif %}>
+                        Apartamento {{ num }}
+                    </label>
+                {% endfor %}
+            </div>
+            <button type="submit" class="submit-btn">Actualizar</button>
+        </form>
+        <h2>Estado del Edificio</h2>
+        <img src="{{ url_for('static', filename='edificio_estado.png') }}" alt="Estado del Edificio">
+    </div>
+</body>
+</html>
